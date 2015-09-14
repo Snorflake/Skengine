@@ -1,11 +1,11 @@
-﻿Build started 13-Sep-15 9:10:04 PM.
+﻿Build started 14-Sep-15 4:31:34 PM.
      1>Project "c:\Users\black\documents\visual studio 2013\Projects\Skerth\Skengine\Skengine.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt SpriteBatch.cpp
          SpriteBatch.cpp
-     1>c:\users\black\documents\visual studio 2013\projects\skerth\skengine\spritebatch.cpp(28): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\black\documents\visual studio 2013\projects\skerth\skengine\spritebatch.cpp(79): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\black\documents\visual studio 2013\projects\skerth\skengine\spritebatch.cpp(106): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\black\documents\visual studio 2013\projects\skerth\skengine\spritebatch.cpp(25): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\black\documents\visual studio 2013\projects\skerth\skengine\spritebatch.cpp(67): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\black\documents\visual studio 2013\projects\skerth\skengine\spritebatch.cpp(101): warning C4018: '<' : signed/unsigned mismatch
        Lib:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\Lib.exe /OUT:"c:\users\black\documents\visual studio 2013\Projects\Skerth\Debug\Skengine.lib" /NOLOGO Debug\Camera2D.obj
          Debug\Errors.obj
