@@ -14,6 +14,7 @@
 #include <Skengine\Timing.h>
 #include "Player.h" //Includes Agent & Humans
 #include "Zombie.h"
+
 enum class GAME_STATE
 {
 	PLAY,
@@ -46,6 +47,7 @@ private:
 
 	std::vector<Level*> _levels;
 	std::vector<Human*> _humans;
+	std::vector<Zombie*> _zombies;
 	Player* _player;
 
 	GAME_STATE _currentState;

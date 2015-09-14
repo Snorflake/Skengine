@@ -12,7 +12,7 @@ Level::Level(const std::string& fileName)
 	
 	std::string temp;
 	file >> temp >> _numHumans;
-
+	std::getline(file, temp); //fucks off the first line
 	while (std::getline(file, temp))
 	{
 		_levelData.push_back(temp);
@@ -52,11 +52,12 @@ Level::Level(const std::string& fileName)
 					_spriteBatch.draw(destRect, uvRect, Skengine::ResourceManager::getTexture("Textures/light_bricks.png").id, 0, whiteColor);
 					break;
 				case '@':
+					_levelData[y][x] = '.';
 					_startPlayerPosition.x = x * TILE_WIDTH;
 					_startPlayerPosition.y = y * TILE_WIDTH;
-					printf("%.0f, %.0f\n", _startPlayerPosition.x, _startPlayerPosition.y);
 					break;				
 				case 'Z':
+					_levelData[y][x] = '.';
 					_zombieStartPositions.emplace_back(x * TILE_WIDTH, y * TILE_WIDTH);
 						break;
 				case '.':

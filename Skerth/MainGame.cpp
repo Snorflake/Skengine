@@ -6,8 +6,10 @@
 #include <Skengine\ResourceManager.h>
 #include <Skengine\ImageLoader.h>
 #include <Skengine\Timing.h>
+#include <random>
+#include <ctime>
 
-MainGame::MainGame() : _screenWidth(1024), _screenHeight(768), _currentState(GAME_STATE::PLAY), _fps(0), _currentLevel(0), _player(nullptr)
+MainGame::MainGame() : _screenWidth(1024), _screenHeight(768), _currentState(GAME_STATE::PLAY), _fps(0), _currentLevel(0), _player(nullptr), _zombies(0)
 {
 
 }
@@ -41,10 +43,21 @@ void MainGame::initLevel()
 	_currentLevel = 0;
 
 	_player = new Player();
-	_player->init(1, _levels[_currentLevel]->getStartPlayerPos(), &_inputManager);
+	_player->init(4, _levels[_currentLevel]->getStartPlayerPos(), &_inputManager);
 	//shit. only one texture is being drawn.
 
 	_humans.push_back(_player);
+	std::mt19937 randomEngine;
+	randomEngine.seed(time(nullptr));
+	std::uniform_int_distribution<int> randX(1, _levels[_currentLevel]->getWidth() - 1);
+	std::uniform_int_distribution<int> randY(1, _levels[_currentLevel]->getHeight() - 1);
+	const float HUMAN_SPEED = 1.f;
+	for (int i = 0; i < _levels[_currentLevel]->getNumHumans(); i++)
+	{
+		_humans.push_back(new Human);
+		glm::vec2 pos(randX(randomEngine) * TILE_WIDTH, randY(randomEngine) * TILE_WIDTH);
+		_humans.back()->init(HUMAN_SPEED, pos);
+	}
 }
 void MainGame::gameLoop()
 {
@@ -59,10 +72,19 @@ void MainGame::gameLoop()
 		processInput();
 		_camera.setPosition(_player->getPosition());
 		_camera.update();
+		//UPDUATE AGENTS
 		for (int i = 0; i < _humans.size(); i++)
 		{
-			_humans[i]->update();
+			_humans[i]->update(_levels[_currentLevel]->getLevelData(), _humans, _zombies);
 		}
+		for (int i = 0; i < _humans.size(); i++)
+		{
+			for (int j = i + 1; j < _humans.size(); j++)
+			{
+				_humans[i]->collideWithAgent(_humans[j]);
+			}
+		}
+
 		//Add Zombies
 		drawGame();
 

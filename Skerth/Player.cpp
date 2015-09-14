@@ -20,7 +20,9 @@ void Player::init(int speed, glm::vec2 pos,Skengine::InputManager* inputManager)
 	_inputManager = inputManager;
 }
 
-void Player::update()
+void Player::update(const std::vector<std::string>& levelData,
+	std::vector<Human*>& humans,
+	std::vector<Zombie*>& zombies)
 {
 	if (_inputManager->isKeyPressed(SDLK_w))
 	{
@@ -38,4 +40,6 @@ void Player::update()
 	{
 		_position.x += _speed;
 	}
+
+	collideWithLevel(levelData);
 }
