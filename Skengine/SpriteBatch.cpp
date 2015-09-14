@@ -39,15 +39,7 @@ void SpriteBatch::end()
 }
 
 void SpriteBatch::draw(const glm::vec4& destRect, const glm::vec4& uvRect, GLuint texture, float depth, Color color)
-{ //This works because it draws the level. And everything else ive tested.
-	//has it ever drawn more than 1 sprite at a time
-	//It doesn't bug. wat
-	//i havent encountered bugs
-	//but have you been able to drawn two different sprites?
-	//well... idk
-	// but it doesnt matter
-	// its a different batch to the level.
-	//try removing the level drawing ad see what happens
+{
 	Glyph* newGlyph = new Glyph();
 	newGlyph->texture = texture;
 	newGlyph->depth = depth;
@@ -106,7 +98,7 @@ void SpriteBatch::createRenderBatches()
 	for (int cg = 1; cg < _glyphs.size(); cg++)
 	{
 		if (_glyphs[cg]->texture != _glyphs[cg - 1]->texture)
-			_renderBatches.emplace_back(offset, 6, _glyphs[0]->texture);
+			_renderBatches.emplace_back(offset, 6, _glyphs[cg]->texture);
 		else
 			_renderBatches.back().numverticies += 6;
 		verticies[cv++] = _glyphs[cg]->topLeft;
